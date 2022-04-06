@@ -1,0 +1,63 @@
+@layout('main.base')
+@yield('content')
+<!-- Main Section -->
+<div class="card">
+    <div class="card-body">
+        <header class="panel-heading panel-border">
+            <h2>Centauri Guest</h2>
+        </header>
+        <hr>
+        @if(flashMessage('notification'))
+            <div class="alert alert-info"> {{ flashMessage('notification') }} </div>
+        @endif
+        <div class="card">
+            <div class="card-header">
+                GUEST DATA
+            </div>
+            <div class="card-body">
+                <a href="{{ route('GuestController.create') }}" class="btn btn-success btn-md" style="margin-bottom:10px">Add New Guest</a>
+                <div class="table-responsive">
+                    <table class="table table-striped" id="guestTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th class="no-sort" style="width:10px;"></th>
+                                <th>RFID ID</th>
+                                <th>Personal ID</th>
+                                <th>Name</th>
+                                <th>Gender</th>
+                                <th>Address</th>
+                                <th>Destination</th>
+                                <th>Keperluan</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @each(guest in guest)
+                            <tr>
+                                <td>{{ guest.id }}</td>
+                                <td>{{ guest.rfid_id }}</td>
+                                <td>{{ guest.guest_id }}</td>
+                                <td>{{ guest.name }}</td>
+                                <td>{{ guest.gender }}</td>
+                                <td>{{ guest.address }}</td>
+                                <td>{{ guest.destination }}</td>
+                                <td>{{ guest.purpose }}</td>
+                                <td>{{ guest.date }}</td>
+                                <td>{{ guest.is_active }}</td>
+                                <td class="text-left">
+                                <a href="{{ route('GuestController.edit', { id : guest.id }) }}" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="{{ route('GuestController.delete', { id : guest.id }) }}" class="btn btn-sm btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                            @endeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.main-section -->
+@endyield

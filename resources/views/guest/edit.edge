@@ -1,0 +1,110 @@
+@layout('main.base')
+@yield('content')
+<!-- Main Section -->
+<div class="card">
+	<div class="card-body">
+		<header class="panel-heading panel-border">
+			   <h2>Centauri Guest</h2>
+		</header>
+		<hr>
+		@if(flashMessage('notification'))
+			   <div class="alert alert-info"> {{ flashMessage('notification') }} </div>
+		@endif
+		<div class="card">
+			<div class="card-header">
+				   EDIT GUEST DATA
+			</div>
+			<div class="card-body">
+				<form id="edit-guest" method="post" action="{{ route('GuestController.update', guest) }}?_method=PUT">
+					{{ csrfField() }}
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="rfid">RFID<span class="text-danger"> *</span></label>
+								<input type="text" class="form-control" name="rfid" required="required" placeholder="RFID" value="{{ old('rfid_id', guest.rfid_id || '') }}"/>
+								{{ elIf('<span class="help-block text-danger">$self</span>', getErrorFor('rfid'), hasErrorFor('rfid')) }}
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="nik">NIK</label>
+								<input type="text" minlength="16" maxlength="16" required="required" class="form-control" name="nik" placeholder="NIK" value="{{ old('guest_id', guest.guest_id || '') }}"/>
+							  </div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name">Nama</label>
+								<input type="text" required="required" class="form-control" name="name" placeholder="Nama" value="{{ old('name', guest.name || '') }}"/>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								@set('gender', old('gender', guest.gender))
+								<label for="address">Jenis Kelamin</label>
+								<select class="form-control" name="gender" id="gender" placeholder="Jenis Kelamin">
+									<option value="Laki-Laki" {{ gender == 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
+									<option value="Perempuan" {{ gender == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								@set('destination', old('destination', guest.destination))
+								<label for="inputState">Tujuan</label>
+								<select class="form-control" name="destination" id="destination" placeholder="tujuan">
+									<option value="2A"{{ destination == '2A' ? 'selected' : '' }}>2A</option>
+									<option value="2B"{{ destination == '2B' ? 'selected' : '' }}>2B</option>
+									<option value="2C"{{ destination == '2C' ? 'selected' : '' }}>2C</option>
+									<option value="3A"{{ destination == '3A' ? 'selected' : '' }}>3A</option>
+									<option value="3B"{{ destination == '3B' ? 'selected' : '' }}>3B</option>
+									<option value="3C"{{ destination == '3C' ? 'selected' : '' }}>3C</option>
+									<option value="3D"{{ destination == '3D' ? 'selected' : '' }}>3D</option>
+									<option value="3E"{{ destination == '3E' ? 'selected' : '' }}>3E</option>
+									<option value="3F"{{ destination == '3F' ? 'selected' : '' }}>3F</option>
+									<option value="4A"{{ destination == '4A' ? 'selected' : '' }}>4A</option>
+									<option value="5A"{{ destination == '5A' ? 'selected' : '' }}>5A</option>
+									<option value="6A"{{ destination == '6A' ? 'selected' : '' }}>6A</option>
+									<option value="7A"{{ destination == '7A' ? 'selected' : '' }}>7A</option>
+									<option value="8A"{{ destination == '8A' ? 'selected' : '' }}>8A</option>
+									<option value="9A"{{ destination == '9A' ? 'selected' : '' }}>9A</option>
+									<option value="10A"{{ destination == '10A' ? 'selected' : '' }}>10A</option>
+									<option value="10B"{{ destination == '10B' ? 'selected' : '' }}>10B</option>
+									<option value="11A"{{ destination == '11A' ? 'selected' : '' }}>11A</option>
+									<option value="12A"{{ destination == '12A' ? 'selected' : '' }}>12A</option>
+									<option value="12B"{{ destination == '12B' ? 'selected' : '' }}>12B</option>
+									<option value="12C"{{ destination == '12C' ? 'selected' : '' }}>12C</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="purpose">Keperluan</label>
+								<input type="text" required="required" class="form-control" name="purpose" placeholder="Keperluan" value="{{ old('purpose', guest.purpose || '') }}"/>
+							</div>
+						</div>
+						<div class="col-md-8">
+							<div class="form-group">
+								<label for="address">Alamat</label>
+								<input type="text" class="form-control" required="required" name="address" placeholder="Alamat" value="{{ old('address', guest.address || '') }}"/>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								@set('is_active', old('is_active', guest.is_active))
+								<label for="inputState">Status </label>
+								<select class="form-control" id="status" name="status">
+									<option value="1" {{ is_active == 1 ? 'selected' : '' }}>Active</option>
+									<option value="0" {{ is_active == 0 ? 'selected' : '' }}>Inactive</option>
+								</select>
+								{{ elIf('<span class="help-block text-danger">$self</span>', getErrorFor('status'), hasErrorFor('status')) }}
+							</div>		
+						</div>
+					</div>
+					<button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /.main-section -->
+@endyield

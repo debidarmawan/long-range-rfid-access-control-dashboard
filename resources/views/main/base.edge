@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+		<title>Centauri - Dashboard</title>
+	</head>
+	<body style="background: #edf2f7">
+		<nav class="navbar navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">
+				<h2><i class="fa fa-street-view" aria-hidden="true"></i>  CENTAURI</h2>
+			</a>
+		</nav>
+		<div class="container-fluid" style="margin-top:50px">
+			<div class="row">
+				<div class="col-md-2">
+					<ul class="list-group">
+						<li class="list-group-item active">Centauri</li>
+						<a href="{{ route('MainController.index') }}" class="list-group-item" style="color: #212529;"><i class="fa fa-tachometer-alt"></i> Dashboard</a>
+						<a href="#" data-toggle="collapse" data-target="#guest" class="list-group-item" style="color: #212529;"><i class="fa fa-user-circle"></i> Guest </a>
+						<li id="guest" class="collapse">
+							<a href="{{ route('GuestController.index')}}" class="list-group-item" style="color: #212529;"><i class="fa fa-angle-double-right"></i> Guest</a>
+							<a href="{{ route('GuestController.create')}}" class="list-group-item" style="color: #212529;"><i class="fa fa-angle-double-right"></i> Add New Guest</a>
+						</li>
+						<a href="#" data-toggle="collapse" data-target="#access-control" class="list-group-item" style="color: #212529;"><i class="fa fa-arrow-circle-up"></i> Access Control</a>
+						<li id="access-control" class="collapse">
+							<a href="{{ route('SecurityController.index')}}" class="list-group-item" style="color: #212529;"><i class="fa fa-angle-double-right"></i> Acess Control</a>
+							<a href="{{ route('SecurityController.create')}}" class="list-group-item" style="color: #212529;"><i class="fa fa-angle-double-right"></i> Add New Acess Control</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-10">
+
+					@!section('content')
+
+				</div>
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.com/libraries/Chart.js"></script>
+	</body>
+</html>

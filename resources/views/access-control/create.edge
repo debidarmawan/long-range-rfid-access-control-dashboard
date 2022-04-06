@@ -1,0 +1,76 @@
+@layout('main.base')
+@yield('content')
+<!-- Main Section -->
+<div class="card">
+	<div class="card-body">
+		<header class="panel-heading panel-border">
+               <h2>Centauri Access Control</h2>
+		</header>
+		<hr>
+		@if(flashMessage('notification'))
+               <div class="alert alert-info"> {{ flashMessage('notification') }} </div>
+		@endif
+		<div class="card">
+			<div class="card-header">
+                   ADD NEW ACCESS CONTROL
+			</div>
+			<div class="card-body">
+				<form id="add-access-control" action="{{ route('SecurityController.store') }}" method="post">
+					{{ csrfField() }}
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="host">Host</label>
+								<input type="text" class="form-control" name="host" required="required" placeholder="Host">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="reader_id">Reader ID</label>
+								<input type="id" class="form-control" name="reader_id" required="required" placeholder="Reader ID">
+							  </div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="door_lock_id">Door Lock ID</label>
+								<input type="id" class="form-control" name="door_lock_id" required="required"  placeholder="Door Lock ID">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="inputState">Location</label>
+								<select class="form-control" name="location" placeholder="location">
+									<option value=""> - </option>
+									<option value="2A">2A</option>
+									<option value="2B">2B</option>
+									<option value="2C">2C</option>
+									<option value="3A">3A</option>
+									<option value="3B">3B</option>
+									<option value="3C">3C</option>
+									<option value="3D">3D</option>
+									<option value="3E">3E</option>
+									<option value="3F">3F</option>
+									<option value="4A">4A</option>
+									<option value="5A">5A</option>
+									<option value="6A">6A</option>
+									<option value="7A">7A</option>
+									<option value="8A">8A</option>
+									<option value="9A">9A</option>
+									<option value="10A">10A</option>
+									<option value="10B">10B</option>
+									<option value="11A">11A</option>
+									<option value="12A">12A</option>
+									<option value="12B">12B</option>
+									<option value="12C">12C</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /.main-section -->
+@endyield
